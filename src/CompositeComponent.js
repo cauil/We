@@ -9,6 +9,7 @@ export default class CompositeComponent {
   }
 
   mount() {
+    const ele = this._currentEle;
     const type = ele.type;
     const props = ele.props;
     let instance;
@@ -23,6 +24,7 @@ export default class CompositeComponent {
     }
 
     const renderComponent = instantiateComponent(renderedEle);
+    console.log('====CompositeComponent', renderComponent)
 
     this._publishInstance = instance;
     this._renderedComponent = renderComponent;

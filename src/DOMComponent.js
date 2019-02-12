@@ -24,13 +24,16 @@ export default class DOMComponent {
       }
     })
 
-    const renderChildren = children.map(instantiateComponent);
+    const renderedChildren = children.filter(v => {
+      // v is not object
+      return Object.prototype.toString.call(v) === '[Object object]'
+    }).map(instantiateComponent);
+    console.log('======DOMComponent', renderedChildren)
+    this._renderChildren = renderedChildren;
 
-    renderChildren.forEach(v => {
-      node.appendChild(v.mount);
-    });
+    const childNodes = renderedChildren.map(child => child.mount());
+    childNodes.forEach(childNode => node.appendChild(childNode));
 
-    this._renderChildren = renderChildren;
 
     return node;
   }
