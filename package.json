@@ -1,0 +1,21 @@
+{
+  "name": "wanderearth",
+  "description": "This is a framework named We for wandering Earch, imitate React.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    }
+  },
+  "dependencies": {
+    "ghooks": "^2.0.4",
+    "validate-commit-msg": "^2.14.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
