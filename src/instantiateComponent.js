@@ -1,13 +1,24 @@
+'use strict';
+
+import assert from './assert';
+import Element from './Element';
 import CompositeComponent from './CompositeComponent';
-import DOMComponent from './DOMComponent';
+import HostComponent from './HostComponent';
 
 export default function instantiateComponent(ele) {
-  const type = ele.type;
+  assert(Element.isValidElement(element));
 
-  if (typeof type === 'function') {
-    return new CompositeComponent(ele);
-  } else if (typeof type === 'string') {
-    return new DOMComponent(ele);
+  const type = ele.type;
+  let internalComponent;
+
+  if (typeof type === 'string') {
+    internalComponent = HostComponent.constructor(ele)
+  } else if (typeof type === 'function') {
+    internalComponent =  new CompositeComponent(ele);
+  } else if (typeof element === 'string' || typeof element === 'number') {
+    internalComponent = HostComponent.constructTextComponent(ele);
   }
+
+  return internalComponent
 }
 
