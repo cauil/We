@@ -30,10 +30,11 @@ function isValidElement(ele) {
     typeofEle === 'string' ||
     typeofEle === 'number' ||
     typeofType === 'string' ||
-    (typeofType === 'function' && ele.type.isWeClass)
+    typeofType === 'function'
   );
 }
 
 export default {
-  createElement: createElement
+  isValidElement,
+  createElement,
 };

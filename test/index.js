@@ -1,13 +1,14 @@
-import { mountTree } from '../src/index';
-import We from '../src/createElement';
+import We from '../src/We';
 
 class CounterButton{
   constructor(props) {
     this.props = props;
     this.state = {count: 0};
+    /*
     setInterval(() => {
       this.setState({count: this.state.count + 1});
     });
+    */
   }
 
   setState(obj) {
@@ -25,8 +26,8 @@ class CounterButton{
 }
 
 window.addEventListener('click', () => {
-  mountTree(
-    <CounterButton title="Hello React Rally!" />,
+  We.render(
+    <CounterButton title="Hello React!" />,
     document.getElementById('App'),
   );
 });

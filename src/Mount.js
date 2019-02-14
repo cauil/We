@@ -1,3 +1,4 @@
+import assert from './assert';
 import DOM from './DOM';
 import Element from './Element';
 import Reconciler from './Reconciler';
@@ -42,7 +43,7 @@ function mountTree(ele, node) {
   rootID++;
 }
 
-function update(component, ele) {
+function update(ele, node) {
   // Ensure we have a valid root node
   assert(node && isRoot(node));
 
@@ -79,7 +80,7 @@ function unmountComponentAtNode(node) {
   delete node.dataset[ROOT_KEY];
 }
 
-export default {
-  mountTree,
+export {
+  render,
   unmountComponentAtNode
 }

@@ -1,5 +1,3 @@
-'use strict';
-
 export default function shouldUpdateComponent(preEle, nextEle) {
   const preType = typeof preEle;
   const nextType = typeof nextEle;

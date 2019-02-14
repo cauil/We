@@ -1,8 +1,10 @@
-const assert = require('./assert');
+import assert from './assert';
 
 let implementation;
 
-function construct(element) {
+console.log(implementation)
+
+function _construct(element) {
   assert(implementation);
 
   return new implementation(element);
@@ -10,7 +12,7 @@ function construct(element) {
 
 function constructTextComponent(element) {
   // Create wrapper element. It will just be a span.
-  return construct({
+  return _construct({
     type: 'span',
     props: {
       children: element,
@@ -22,8 +24,8 @@ function inject(impl) {
   implementation = impl;
 }
 
-module.exports = {
+export default {
   inject,
-  construct,
+  _construct,
   constructTextComponent,
-};
+}
