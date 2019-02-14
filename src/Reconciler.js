@@ -8,14 +8,14 @@ function unmountComponent(component, node) {
   component.unmount();
 }
 
-function receiveComponent(component, ele) {
+function receiveComponent(component, nextEle) {
   const preEle = component._currentElement;
 
-  if(preEle === ele) {
+  if(preEle === nextEle) {
     return;
   }
 
-  component.receive(component);
+  component.receive(nextEle);
 }
 
 function performUpdateIfNecessary(component) {

@@ -24,10 +24,15 @@ function updateStyles(node, styles) {
   })
 }
 
+function replaceChild(parent, next, pre) {
+  parent.replaceChild(next, pre);
+}
+
 export default {
   empty,
   appendChild,
   appendChildren,
   setProperty,
   updateStyles,
+  replaceChild,
 };

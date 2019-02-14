@@ -50,11 +50,10 @@ function update(ele, node) {
 
   // Find the internal instance and update it
   let id = node.dataset[ROOT_KEY];
-
   let instance = instancesByRootID[id];
 
-  if (shouldUpdateComponent(instance, ele)) {
-    // TODO: do the update
+  if (shouldUpdateComponent(instance._currentElement, ele)) {
+    Reconciler.receiveComponent(instance, ele);
   } else {
     // Unmount and then mount the new one
     unmountComponentAtNode(node);
