@@ -3,13 +3,13 @@ import instantiateComponent from './instantiateComponent'
 
 export default class CompositeComponent {
   constructor(ele) {
-    this._currentEle = ele;
+    this._currentElement = ele;
     this._publishInstance = null;
     this._renderedComponent = null;
   }
 
   mount() {
-    const ele = this._currentEle;
+    const ele = this._currentElement;
     const type = ele.type;
     const props = ele.props;
     let instance;
