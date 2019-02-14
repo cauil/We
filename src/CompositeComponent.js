@@ -1,4 +1,5 @@
 import { isClass } from './util';
+import Reconciler from './Reconciler';
 import instantiateComponent from './instantiateComponent'
 
 export default class CompositeComponent {
@@ -24,11 +25,19 @@ export default class CompositeComponent {
     }
 
     const renderComponent = instantiateComponent(renderedEle);
-    console.log('====CompositeComponent', renderComponent)
-
     this._publishInstance = instance;
     this._renderedComponent = renderComponent;
 
-    return renderComponent.mount();
+    return Reconciler.mountComponent(renderComponent);
+  }
+
+  unmount() {
+    const publishInstance = this._publishInstance;
+    if (publishInstance && publishInstance.componentWillUnmount) {
+      publishInstance.componentWillUnmount();
+    }
+
+    const renderComponent = this._renderedComponent;
+    Reconciler.unmountComponent(renderComponent);
   }
 }

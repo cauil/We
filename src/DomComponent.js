@@ -1,4 +1,5 @@
 import DOM from './DOM';
+import Reconciler from './Reconciler';
 import instantiateComponent from './instantiateComponent'
 
 export default class DOMComponent {
@@ -15,9 +16,7 @@ export default class DOMComponent {
 
     // create node and setAttribute
     const node = document.createElement(type);
-
     this._node = node;
-
     Object.keys(props).forEach(prop => {
       if (prop === 'style') {
         DOM.updateStyles(node, props[prop])
@@ -26,6 +25,7 @@ export default class DOMComponent {
       }
     })
 
+    // handle the children node
     this._createInitialDOMChildren(props);
 
     return node;
@@ -40,7 +40,7 @@ export default class DOMComponent {
     ) {
       // TODO: validate element type can have text children
       // TODO: wrap with helper, there are browser inconsistencies
-      this._node.textContent = children
+      this._node.textContent = children;
     } else if (children) {
       // Single element or Array
       if (!Array.isArray(children)) {
@@ -48,7 +48,6 @@ export default class DOMComponent {
       }
 
       const renderedChildren = children.map(instantiateComponent);
-      console.log('======DOMComponent', renderedChildren)
       this._renderChildren = renderedChildren;
 
       const childNodes = renderedChildren.map(child => {
@@ -57,6 +56,15 @@ export default class DOMComponent {
 
       DOM.appendChildren(this._node, childNodes);
     }
+  }
 
+  unmount() {
+    const renderChildren = this._renderChildren;
+
+    if(renderChildren) {
+      renderChildren.forEach(child => {
+        Reconciler.unmountComponent(child);
+      });
+    }
   }
 }

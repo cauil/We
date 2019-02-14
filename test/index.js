@@ -15,6 +15,10 @@ class CounterButton{
     this.state = obj;
   }
 
+  componentWillUnmount() {
+    console.log('***lifeCycle: componentWillUnmount for CounterButton');
+  }
+
   render() {
     return (
       <div>

@@ -2,8 +2,6 @@ import assert from './assert';
 
 let implementation;
 
-console.log(implementation)
-
 function _construct(element) {
   assert(implementation);
 

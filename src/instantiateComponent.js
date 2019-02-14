@@ -11,7 +11,6 @@ export default function instantiateComponent(ele) {
   let internalComponent;
 
   if (typeof type === 'string') {
-    console.log(HostComponent)
     internalComponent = HostComponent._construct(ele)
   } else if (typeof type === 'function') {
     internalComponent =  new CompositeComponent(ele);

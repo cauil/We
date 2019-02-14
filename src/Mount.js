@@ -1,6 +1,7 @@
 import assert from './assert';
 import DOM from './DOM';
 import Element from './Element';
+import shouldUpdateComponent from './shouldUpdateComponent';
 import Reconciler from './Reconciler';
 import instantiateComponent from './instantiateComponent';
 
