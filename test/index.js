@@ -15,8 +15,16 @@ class CounterButton{
     this.state = obj;
   }
 
+  componentWillMount() {
+    console.log('***lifeCycle: componentWillMount for CounterButton');
+  }
+
   componentWillUnmount() {
     console.log('***lifeCycle: componentWillUnmount for CounterButton');
+  }
+
+  componentWillUpdate() {
+    console.log('***lifeCycle: componentWillUpdate for CounterButton');
   }
 
   render() {
@@ -28,10 +36,25 @@ class CounterButton{
     );
   }
 }
+const mountNode = document.querySelector('#mount');
+const unmountNode = document.querySelector('#unmount');
+const updateNode = document.querySelector('#update');
+const root = document.getElementById('App');
 
-window.addEventListener('click', () => {
+mountNode.addEventListener('click', () => {
   We.render(
     <CounterButton title="Hello React!" />,
     document.getElementById('App'),
+  );
+});
+
+unmountNode.addEventListener('click', () => {
+    We.unmount(root);
+});
+
+updateNode.addEventListener('click', () => {
+  We.render(
+    <CounterButton title="updated Hello We!" test="test" />,
+    root,
   );
 });
